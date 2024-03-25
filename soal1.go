@@ -8,7 +8,7 @@ type Tim struct {
 	skor [3]int
 }
 
-func (tim Tim) rerata() float64 {
+func (tim *Tim) rerata() float64 {
 	var total = 0
 	var n = len(tim.skor)
 	for _, num := range tim.skor {
@@ -19,7 +19,7 @@ func (tim Tim) rerata() float64 {
 }
 
 //fungsi dasar untuk membandingkan 2 skor rata-rata saja tanpa ada persyaratan minimum
-func (tim1 Tim) adu1(tim2 Tim) {
+func (tim1 *Tim) adu1(tim2 *Tim) {
 	var res1 = tim1.rerata()
 	var res2 = tim2.rerata()
 
@@ -34,7 +34,7 @@ func (tim1 Tim) adu1(tim2 Tim) {
 }
 
 //untuk yang memakai prasyarat harus minimal >=100
-func (tim1 Tim) adu2(tim2 Tim) {
+func (tim1 *Tim) adu2(tim2 *Tim) {
 	var res1 = tim1.rerata() //menghitung rata2 nilai dari tim kesatu
 	var res2 = tim2.rerata() //menghitung rerata nilai dri tim kedua
 
@@ -55,17 +55,17 @@ func main() {
 	dilumba := Tim{"Lumba-lumba", skorl}
 	skork := [3]int{88, 91, 110}
 	dikoala := Tim{"Koala", skork}
-	dilumba.adu1(dikoala) //cara mencari tahu yang lebih besarnya
+	dilumba.adu1(&dikoala) //cara mencari tahu yang lebih besarnya
 	//soal2
 	skorl2 := [3]int{97, 112, 101}
 	skork2 := [3]int{109, 95, 123}
 	dilumba.skor = skorl2
 	dikoala.skor = skork2
-	dilumba.adu2(dikoala)
+	dilumba.adu2(&dikoala)
 	//soal 3
 	skorl3 := [3]int{97, 112, 101}
 	skork3 := [3]int{109, 95, 106}
 	dilumba.skor = skorl3
 	dikoala.skor = skork3
-	dilumba.adu2(dikoala)
+	dilumba.adu2(&dikoala)
 }
